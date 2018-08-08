@@ -51,6 +51,7 @@ void		simp_exp(Poly & exp);
 
 //solve.cpp
 void		solve(Poly & exp);
+void		print_header(void);
 
 //usage.cpp
 void		usage(void);

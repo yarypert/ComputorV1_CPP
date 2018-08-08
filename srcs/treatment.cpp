@@ -176,16 +176,26 @@ void	simp_exp(Poly & exp)
 	char ca[64];
 	char cb[64];
 	char cc[64];
-	sprintf(ca, "%g", exp.a);
-	sprintf(cb, "%g", exp.b);
-	sprintf(cc, "%g", exp.c);
+	sprintf(ca, "%g", abs(exp.a));
+	sprintf(cb, "%g", abs(exp.b));
+	sprintf(cc, "%g", abs(exp.c));
 	string a = ca;
 	string b = cb;
 	string c = cc;
-	char signb = exp.b >= 0 ? '+' : ' ';
-	char signc = exp.c >= 0 ? '+' : ' ';
-	exp.sstr = a + " * X^2 " + signb + " " + b + " * X^1 " + signc + " " + c + " * X^0 = 0";
-	exp.ssstr = a + " * X^2 " + signb + " " + b + " * X " + signc + " " + c + " = 0";
+	char signa = exp.a >= 0 ? '+' : '-';
+	char signb = exp.b >= 0 ? '+' : '-';
+	char signc = exp.c >= 0 ? '+' : '-';
+	cout<< exp.sstr<< endl;
+	if (exp.a != 0)
+		exp.sstr = exp.sstr + signa + " " + a + " * X^2 ";
+	if (exp.b != 0)
+		exp.sstr = exp.sstr + signb + " " + b + " * X^1 ";
+	if (exp.c != 0)
+		exp.sstr = exp.sstr + signc + " " + c + " * X^0 ";
+	exp.sstr = exp.sstr + "= 0";
+	if (exp.sstr[0] == '+')
+		exp.sstr.erase(0, 2);
+
 }
 
 void	compute(Poly & exp)
@@ -200,4 +210,5 @@ void	compute(Poly & exp)
 	del_signs(exp);
 	get_abc(exp);
 	simp_exp(exp);
+
 }

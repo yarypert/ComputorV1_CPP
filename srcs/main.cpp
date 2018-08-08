@@ -22,6 +22,7 @@ int main(int argc, char **argv)
 			Poly	exp;
 			init(exp);
 			exp.str = argv[1];
+			print_header();
 			compute(exp);
 			solve(exp);
 		}
